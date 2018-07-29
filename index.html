@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WEEKEND1_SALERY_CALC</title>
+    <script src="venders/jquery-3.3.1.js"></script>
+    <script src="client.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<div class="container">
+    <body>
+        <header>
+            <h1>WEEKEND1_SALERY_CALC</h1>
+        
+        </header>
+        <!-- five input fields and submit button-->
+        <div class=inputFieldsDiv>
+            <input id="firstNameInput" type="script" placeholder="First Name">
+            <input id="lastNameInput" type="script" placeholder="Last Name">
+            <input id="idInput" type="script" placeholder="ID">
+            <input id="titleInput" type="script" placeholder="Title">
+            <input id="annualSalaryInput" type="script" placeholder="Annual Salary">
+        </div>
+        <!-- button div -->
+        <div class="btnDiv">
+            <button id="submitBtn">submit</button>
+        </div>
+        <!-- table to append to from js -->
+        <div class="tableDiv">
+            <table class="table" style="width:100%">
+                <!-- <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>ID</th> 
+                    <th>Title</th>
+                    <th>Annual Salery</th>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td>Smith</td>
+                    <td>50</td>
+                    <td>boss</td>
+                    <td>$50,000</td>
+                </tr>              -->
+            </table>
+        </div>
+        <p id="totalMonthly">Total Monthly: $<span id="totalMonthly">20000</span></p>      
+    </body>
+</div>
+</html>
