@@ -13,6 +13,9 @@ function onReady(){
 // create a variable which will store monthly budget 
  let totalBudget = 0;
  
+ //variable for tagging new Employee objects
+ let indexTag = 0;
+ 
  // create an array to hold individuals as a group
  const employeeArr = [];
 
@@ -40,14 +43,24 @@ function getInfoCreateClass(){
     }//end if no number
     else{  
         let newOne = new Employee( a,b,c,d,e );
-        pushClassCLearInputs( newOne );
-    }
+        employeeArr.push( newOne );
+        dataTag();
+    }//end create new Employee
 }//end getInfoCreateClass
 
-// create function to push new Class to employeeArr, then clear the input fields.
-function pushClassCLearInputs( employeeIn ){
+function dataTag(){
+    console.log( 'in dataTag' );
+    indexTag = 0;
+    for( let employee of employeeArr ) {
+        $(employee).data( 'index', indexTag );
+        indexTag ++;
+    }
+    cLearInputs();xvd
+}//end dataTag
+
+// create function to clear the input fields.
+function cLearInputs( employeeIn ){
     console.log( 'in pushClassCLearInputs' );
-    employeeArr.push( employeeIn );
     console.log( employeeArr );
     $( '#firstNameInput' ).val( '' );
     $( '#lastNameInput' ).val( '' );
@@ -72,8 +85,6 @@ function displayFromInput(){
     for( let employee of employeeArr ){
         $('.table').append( '<tr class="tableRow" ><td>' + employee['firstNameIn'] + '</td><td>' + employee['lastNameIn'] + '</td><td>' + employee['idIn'] + '</td><td>' + employee['titleIn'] + '</td><td>' + employee['salaryIn'] + '</td></tr>' ); 
     // turn salary to a number and add it to totalBudget var
-     //////   employee.data( 'index', 'dataIndex' );
-
     }
     adjBudget();
 }//end displayFromInput
@@ -117,10 +128,14 @@ function changeColorBack(){
 // create function to eliminate and employee from the DOM and 
 function eliminateEmployee() {
     console.log( 'in eliminateEmployee' )
+    let goneEmployee = $('index');
+    employeeArr.splice( goneEmployee, 1 );
     $( this ).remove();
+    adjBudget();
     //remove selected row from employeeArr,
     //then run displayFromInput() to recalculate budget 
 }//end eliminateEmployee
+
 
 
 
