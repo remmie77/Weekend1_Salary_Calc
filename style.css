@@ -40,16 +40,11 @@ th {
     padding-top: 32px;
 }
 
-#submitBtn{
-    float: right;
-
-}
-
-.btnDiv{
+/* .btnDiv{
     padding-right: 12px;
-}
+} */
 
-.inputFieldsDiv{
+.inputFieldsForm{
     display: flex;
     justify-content: space-between;
     padding-top: 12px ;
@@ -60,7 +55,10 @@ th {
     padding-right: 12px;
 }
 
-input{
-    margin: 12px;
-}
+/* input{
+    margin: 3;
+} */
 
+tr{
+    color: white;
+}

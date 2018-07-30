@@ -4,9 +4,10 @@ $( document ).ready( onReady );
 
 function onReady(){
     console.log( 'jQ' );
-    $( '.btnDiv' ).on( 'click', '#submitBtn', getInfoCreateClass );
-    $( '.table' ).on( 'mouseenter', '.highlight', changeColorRow, changeColorBack);
-    $( '.table' ).on( 'mouseleave', '.highlight', changeColorBack);
+    $( '.inputFieldsForm' ).on( 'click', '#submitBtn', getInfoCreateClass );
+    $( '.table' ).on( 'mouseenter', '.tableRow', changeColorRow );
+    $( '.table' ).on( 'mouseleave', '.tableRow', changeColorBack );
+    $( '.table' ).on( 'dblclick', '.tableRow', eliminateEmployee );
 }
 
 // create a variable which will store monthly budget 
@@ -34,8 +35,13 @@ function getInfoCreateClass(){
     let c = $( '#idInput' ).val();
     let d = $( '#titleInput' ).val();
     let e = $( '#annualSalaryInput' ).val();
-    const newOne = new Employee( a,b,c,d,e );
-    pushClassCLearInputs( newOne );
+    if( e == '' ){
+        $( '#submitBtn' ).disabled = true;
+    }//end if no number
+    else{  
+        let newOne = new Employee( a,b,c,d,e );
+        pushClassCLearInputs( newOne );
+    }
 }//end getInfoCreateClass
 
 // create function to push new Class to employeeArr, then clear the input fields.
@@ -61,22 +67,29 @@ function clearTable(){
 //create function which appends array inputs when new class is formed
 function displayFromInput(){
     console.log( 'in displayFromInput' );
+    let dataIndex = 0
     $('.table').append( '<thead><tr><th>Firstname</th><th>Lastname</th><th>ID</th><th>Title</th><th>Annual Salery</th></tr></thead>' );
     for( let employee of employeeArr ){
-        $('.table').append( '<tr class="highlight" ><td>' + employee['firstNameIn'] + '</td><td>' + employee['lastNameIn'] + '</td><td>' + employee['idIn'] + '</td><td>' + employee['titleIn'] + '</td><td>' + employee['salaryIn'] + '</td></tr>' ); 
+        $('.table').append( '<tr class="tableRow" ><td>' + employee['firstNameIn'] + '</td><td>' + employee['lastNameIn'] + '</td><td>' + employee['idIn'] + '</td><td>' + employee['titleIn'] + '</td><td>' + employee['salaryIn'] + '</td></tr>' ); 
     // turn salary to a number and add it to totalBudget var
-        totalBudget += Number( employee['salaryIn'] );
-        console.log( totalBudget );
-        adjBudget(( totalBudget ).toFixed( 2 ));
+     //////   employee.data( 'index', 'dataIndex' );
+
     }
+    adjBudget();
 }//end displayFromInput
 
 // create a function which will adjust the monthlyBudget var and append to DOM
-function adjBudget( newBudget ){
-    console.log( 'in adjBudget' + newBudget );
-    $( '#totalCash' ).text( newBudget );
+//if budget exceeds $20000, change budget text to red.
+function adjBudget(){
+    console.log( 'in adjBudget' );
+    totalBudget = 0;
+    for ( let employee of employeeArr ){
+        totalBudget += Number( employee['salaryIn'] );
+    }
+    console.log( totalBudget );
+    $( '#totalCash' ).text(( totalBudget ).toFixed(2));
     if( totalBudget > 20000 ){
-        $( '#totalMonthly' ).css( 'color', 'red' );
+        $( '#totalMonthly' ).css( 'color', 'orange' );
     }//end if budget is over
 }//end adjBudget
 
@@ -92,16 +105,26 @@ function adjBudget( newBudget ){
 // }//end removeEmployee
 
 function changeColorRow(){
-    console.log( 'in changeColorRow' );
-    $( this ).css( "background-color", "yellow" );
+    //console.log( 'in changeColorRow' );
+    $( this ).css( "background-color", "lightgrey" );
 }//end changeColorRow
 
 function changeColorBack(){
-    console.log( 'in changeColorBack' );
+    //console.log( 'in changeColorBack' );
     $( this ).css( "background-color", "#2591DB" );
 }//end changeColorBack
 
-// if budget reaches 20G's change something to RED colors
+// create function to eliminate and employee from the DOM and 
+function eliminateEmployee() {
+    console.log( 'in eliminateEmployee' )
+    $( this ).remove();
+    //remove selected row from employeeArr,
+    //then run displayFromInput() to recalculate budget 
+}//end eliminateEmployee
+
+
+
+
 
 
 

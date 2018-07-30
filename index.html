@@ -17,18 +17,15 @@
         
         </header>
         <!-- five input fields and submit button-->
-        <div class=inputFieldsDiv>
-            <input id="firstNameInput" type="script" placeholder="First Name">
-            <input id="lastNameInput" type="script" placeholder="Last Name">
-            <input id="idInput" type="script" placeholder="ID">
-            <input id="titleInput" type="script" placeholder="Title">
-            <input id="annualSalaryInput" type="script" placeholder="Annual Salary">
+        <div class=inputFieldsForm>
+            <input id="firstNameInput" type="script" placeholder="First Name" type="submit" />
+            <input id="lastNameInput" type="script" placeholder="Last Name" />
+            <input id="idInput" type="script" placeholder="ID" />
+            <input id="titleInput" type="script" placeholder="Title" />
+            <input id="annualSalaryInput" placeholder="Annual Salary" type="number" required />
+            <input id="submitBtn" type="submit" value="submit">
         </div>
-        <!-- button div -->
-        <div class="btnDiv">
-            <button id="submitBtn">submit</button>
-        </div>
-        <!-- table to append to from js -->
+        
         <div class="tableDiv">
             <table class="table" style="width:100%">
                 <!-- <tr>
@@ -46,8 +43,11 @@
                     <td>$10,000</td>
                 </tr> -->
             </table>
+            <p id="totalMonthly">Total Monthly: $<span id="totalCash"></span></p>
         </div>
-        <p id="totalMonthly">Total Monthly: $<span id="totalCash"></span></p>      
     </body>
+            <footer>
+                <h2 id="info">(Double-click any row to remove data)</h2>
+            </footer>
 </div>
 </html>
